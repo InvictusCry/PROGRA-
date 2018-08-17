@@ -15,7 +15,7 @@ using namespace std;
 	cout<<"INGRESE LA ALTURA"<<endl;
 	cin>>h;
 	area=b*h;
-	cout<<"EL AREA DEL PARALELOGRMAO ES: "<<area;
+	cout<<"EL AREA DEL PARALELOGRAMO ES: "<<area;
 	getch();
  }	
 
