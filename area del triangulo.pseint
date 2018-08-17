@@ -1,0 +1,9 @@
+Proceso AREA1
+	Escribir 'INSERTE LA BASE'
+	Leer B
+	Escribir "INSERTE LA ALTURA"
+	Leer H
+	A<-((B*H)/2)
+	Escribir "EL AREA ES: " 
+	Escribir A
+FinProceso
