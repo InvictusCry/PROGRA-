@@ -22,3 +22,12 @@ void main ()
 
 
 }
+Proceso IntercambiodeVariables
+	Leer A
+	Leer B
+	aux<-A
+	A<-B
+	B<-aux
+	Escribir "El valor de A es: ",A
+	Escribir "El valor de B es: ",B
+FinProceso
