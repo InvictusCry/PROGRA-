@@ -1,0 +1,37 @@
+ #include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"	
+
+using namespace std;
+
+void main()
+
+{
+	double b, a, g, x, c, x1, x2;
+	cout<<"Inserte a: ";
+	cin>>a;
+	cout<<"Inserte b: ";
+	cin>>b;
+	cout<<"Inserte c: ";
+	cin>>c;
+	g=((pow(b,2))-(4*(a*c)));
+	if (g==0) {
+		cout<<"Solucion unica"<<endl;
+		x= (-b)/(2*a);
+		cout<<"El valor de x es: "<<x;
+	}
+	if (g<0) {
+		cout<<"Error en datos no evitable";
+	}
+	if (g>0) {
+		cout<<"Solucion de dos variables"<<endl;
+		x1=((-b)+ sqrt(g))/(2*a);
+		x2=((-b)- sqrt(g))/(2*a);
+		cout<<"El valor de x1 es: "<<x1<<endl;
+		cout<<"El valor de x2 es: "<<x2<<endl;
+	}
+	getch();
+}
+
+ 
