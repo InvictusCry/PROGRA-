@@ -18,3 +18,13 @@ using namespace std;
 	getch();
  }	
 
+
+
+
+Proceso AREA2
+	Escribir 'INSERTE EL LADO'
+	Leer L
+	A<-(L*L)
+	Escribir "EL AREA ES: " 
+	Escribir A
+FinProceso
