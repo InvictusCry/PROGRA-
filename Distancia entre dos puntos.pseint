@@ -1,8 +1,0 @@
-Proceso Distanciaentredospuntos
-	Leer X1
-	Leer Y1
-	Leer X2
-	Leer Y2
-	D<-RC(((X2-X1)^2)+((Y2-Y1)^2))
-	Escribir 'La distancia entre los dos puntos es: ',D
-FinProceso
