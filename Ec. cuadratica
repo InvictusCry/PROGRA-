@@ -1,0 +1,45 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"
+
+using namespace std;
+
+float discriminante (float a, float b, float c);
+void reales (float a, float b, float c, float &x1, float &x2);
+
+
+void main ()
+{
+	float a, b, c, valor1, valor2, d;
+	cout<<"Ingrese los valores de a,b y c"<<endl;
+	cout<<"a: ";
+	cin>>a;
+	cout<<"b: ";
+	cin>>b;
+	cout<<"c: ";
+	cin>>c; 
+d=discriminante(a,b,c);
+	if (d>0)
+	{
+		reales(a,b,c,valor1,valor2);
+		cout<<"Raiz 1: "<<valor1<<endl;
+		cout<<"Raiz 2: "<<valor2<<endl;
+	}
+	else 
+		cout<<"No son reales"<<endl;
+	getch();
+}
+float discriminante(float a, float b, float c)
+{
+	float d;
+	d = (b*b)-(4*a*c);
+	return d;
+}
+
+void reales (float a, float b, float c, float &x1, float &x2)
+{
+	x1=(-b+sqrt((b*b)-(4*a*c)))/(2*a);
+	x2=(-b-sqrt((b*b)-(4*a*c)))/(2*a);
+	
+}
