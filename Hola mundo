@@ -17,3 +17,9 @@ using namespace std;
 	getch();
  }	
 
+
+
+Proceso HOLAS
+	Escribir 'HOLA MUNDO'
+	Escribir 'SOY: GERARDO CHAVARRIA'
+FinProceso
