@@ -17,3 +17,14 @@ using namespace std;
 	getch();
  }	
 
+
+
+
+
+Proceso AREA3
+	Escribir 'INSERTE EL RADIO'
+	Leer R
+	A<-(3.141592*R*R)
+	Escribir 'EL AREA ES: '
+	Escribir A
+FinProceso
