@@ -1,0 +1,37 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"
+#define MAX 100
+#include <string>
+
+using namespace std;
+
+void leer(int vector[], int tam);
+void arreglo(int vector[],int tam,int x);
+
+void main()
+{
+	int vector[MAX];
+	int tam, x;
+	cin>>tam;
+	cout<<"Ingrese el vector"<<endl;
+	leer(vector,tam);
+	cin>>x;
+		arreglo(vector,tam,x);
+		getch();
+}
+void leer(int vector[],int tam)
+{
+	for (int i=0;i<tam;i++)
+		cin>>vector[i];
+}
+void arreglo (int vector[], int tam,int x){
+	for (int i=0;i<tam;i++){
+	if (vector[i]==x)
+
+		cout<<"El arreglo es: "<<i<<endl;
+}
+}
+
+
