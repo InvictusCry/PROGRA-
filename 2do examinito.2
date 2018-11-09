@@ -1,0 +1,66 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"
+#define MAX 100
+#include <string>
+
+using namespace std;
+
+void vocales (string frase[], int tam);
+ void cargar (string frase[], int tam);
+void consonantes (string frase[], int tam);
+void palabras (string frase[], int tam);
+
+void main()
+{
+	string frase,tam;
+		cout<<"Ingrese la frase: ";
+	getline(cin.frase);
+	cargar(frase,tam)
+		vocales(frase,tam);
+	consonantes(frase,tam);
+	palabras(frase,tam);
+	getch();
+
+}
+
+
+
+
+
+
+
+
+void cargar (string frase[], int tam)
+{
+for(int i=0;i<tam;i++)
+{
+	string frase;
+cout<<"Frase: ";
+getline(cin.frase);
+}
+}
+
+
+
+void vocales (string frase[], int tam){
+	int vocal=0;
+		for(int i=0;i<tam;i++){
+			if(frase[i] =="a" || frase[i]=="e" || frase[i]=="i" || frase[i]=="o" || frase[i]=="u")
+				vocal++; }
+		cout<<vocal;}
+
+void consonantes (string frase[], int tam){
+	int consonante=0;
+		for(int i=0;i<tam;i++){
+			if(frase[i] !="a" || frase[i]!="e" || frase[i]!="i" || frase[i]!="o" || frase[i]!="u")
+				consonante++; }
+		cout<<consonante;}
+
+void palabras (string frase[], int tam){
+	int palabra=0;
+		for(int i=0;i<tam;i++){
+			if(frase[i] ==" " )
+				palabra++; }
+		cout<<palabra;}
