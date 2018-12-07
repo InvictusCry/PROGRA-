@@ -1,0 +1,179 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <fstream> ///File stream, para manejar archivos como entradas y salidas
+#include <string> 
+#include <windows.h> ///Para la funcion de Sleep
+#include <cstdlib> ///Para system() borrar pantalla y cambiar color System llama a la consola de Windows
+
+using namespace std;
+
+bool verificar(string ci);
+float obtenerpin(string ci);
+string obtenernombre(string ci);
+float obtenersaldo(string ci);
+void actualizarcuenta(string ci, float pin, string nom, float saldonuevo);
+float obtenerdeudas(string ci);
+void actualizardeudas(string ci, float pin, string nom, float saldonuevo);
+
+void main()
+{
+	while(true){
+		system("CLS");
+		system("color 06"); //color para cambiar el color de fondo y el color de letras, el 0 es fondo negro y el 6 es letras amarillas
+		string ci;
+		cout<<"Ingrese su nro. de cuenta:"<<endl;
+		cout<<'>';
+		cin>>ci;
+		ci=ci+".cuenta";
+		system("CLS");
+		if(verificar(ci)==true){
+			string nom;
+			float pin, c;
+			int intentos=0;
+			bool correcto=false;
+			pin=obtenerpin(ci);
+			nom=obtenernombre(ci);
+			do{
+				cout<<"Ingrese PIN:"<<endl;
+				cout<<'>';
+				cin>>c;
+				if (c==pin)
+					correcto=true;
+				else{
+					cout<<"PIN incorrecto"<<endl;
+					intentos++;
+				}
+			}
+			while(intentos<3 && correcto==false);
+			if(correcto==true){
+				string cuentadestino;
+				float saldo=obtenersaldo(ci), monto=0, deuda;
+				cout<<"Bienvenido a la app del Banco X"<<endl;
+				Sleep(1500);
+				system("CLS");
+				cout<<"Bienvenido "<<nom<<". Que desea realizar?"<<endl;
+				int opcion;
+				cout<<"----Opciones----"<<endl;
+				cout<<"1. Pago de servicios"<<endl;
+				cout<<"2. Obtener saldo"<<endl;
+				cout<<"3. Transferencia a otra cuenta"<<endl;
+				cout<<"4. Salir"<<endl;
+				cout<<"Ingrese opcion:"<<endl;
+				cout<<'>';
+				cin>>opcion;
+				switch(opcion){
+					case 1: 
+						cout<<"Pago de servicios basicos"<<endl;
+						cout<<"Ingrese el monto que desea cancelar:"<<endl;
+						cout<<'>';
+						cin>>deuda;
+						if(saldo>=deuda){
+								actualizarcuenta(ci, pin, nom, saldo-deuda);
+								cout<<"Se pago la deuda por servicios basicos"<<endl;
+								Sleep(1500);
+						}
+						else{
+								cout<<"No tiene saldo suficiente"<<endl;
+								Sleep(2000);
+						}
+						break;
+					case 2: 
+						cout<<"Su saldo es: "<<saldo<<endl;
+						Sleep(2000);
+						break;
+					case 3: 
+						system("CLS");
+						cout<<"A que cuenta desea hacer el traspaso:"<<endl;
+						cout<<'>';
+						cin>>cuentadestino;
+						cuentadestino+=".cuenta";
+						if(ci!=cuentadestino){
+							cout<<"Ingrese el monto a transferir:"<<endl;
+							cin>>monto;
+							if(saldo>=monto){
+								actualizarcuenta(ci, pin, nom, saldo-monto);
+								actualizarcuenta(cuentadestino, obtenerpin(cuentadestino), obtenernombre(cuentadestino), obtenersaldo(cuentadestino)+monto);
+								cout<<"Se realizo la transferencia"<<endl;
+								Sleep(1500);
+							}
+							else{
+								cout<<"No tiene saldo suficiente"<<endl;
+								Sleep(2000);
+							}
+						}
+						else{
+							cout<<"Demonios Gump, eres un genio, pero no se puede transferir fondos a usted mismo"<<endl;
+							Sleep(5000);
+						}
+						break;
+					case 4: 
+						cout<<"Saliendo...";
+						Sleep(2000);
+						break;
+					default: 
+						cout<<"Opcion no valida";
+						Sleep(2000);
+						break;
+				}
+			}
+			else{
+				cout<<"No ingresaste el pin correcto, tu cuenta ha sido bloqueada por 1 dia"<<endl;
+			}
+		}
+		else{
+			cout<<"No existe esa cuenta"<<endl;
+			Sleep(2000);
+		}
+	}
+	getch();
+}
+
+bool verificar(string ci){
+	ifstream cuenta;
+	cuenta.open(ci);
+	if(cuenta.good()==true)
+		return true;
+	else
+		return false;
+}
+
+float obtenerpin(string ci){
+	float pin;
+	ifstream cuenta;
+	cuenta.open(ci);
+	cuenta>>pin; //cin>>pin
+	cuenta.close();
+	return pin;
+}
+
+string obtenernombre(string ci){
+	string linea;
+	ifstream cuenta;
+	cuenta.open(ci);
+	getline(cuenta,linea);
+	getline(cuenta,linea);
+	cuenta.close();
+	return linea;
+}
+
+float obtenersaldo(string ci){
+	float pin, saldo;
+	string linea;
+	ifstream cuenta;
+	cuenta.open(ci);
+	getline(cuenta,linea); //cin>>pin
+	getline(cuenta,linea);
+	cuenta>>saldo;
+	cuenta.close();
+	return saldo;
+}
+
+void actualizarcuenta(string ci, float pin, string nom, float saldonuevo){
+	ofstream cuenta;
+	cuenta.open(ci);
+	cuenta<<pin<<endl; //cin>>pin
+	cuenta<<nom<<endl;
+	cuenta<<saldonuevo<<endl;
+	cuenta.close();
+}
